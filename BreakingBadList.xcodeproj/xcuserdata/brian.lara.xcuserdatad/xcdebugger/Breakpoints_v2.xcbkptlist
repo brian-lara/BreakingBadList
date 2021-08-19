@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "37D914F9-A1BA-4232-9474-B55F2A524B43"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5307C570-1112-4B72-87D7-E14F64565DB3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BreakingBadList/MainCharacterList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getCharacterImage(url:index:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5307C570-1112-4B72-87D7-E14F64565DB3 - bdb526f4b0981dc2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Any&gt;) -&gt; () in BreakingBadList.MainCharacterList.getCharacterImage(url: Swift.String, index: Swift.Int) -&gt; ()"
+                  moduleName = "BreakingBadList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brian.lara/Desktop/BreakingBadList/BreakingBadList/MainCharacterList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "868">
+               </Location>
+               <Location
+                  uuid = "5307C570-1112-4B72-87D7-E14F64565DB3 - 3fa07fed9f182017"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Any&gt;) -&gt; () in BreakingBadList.MainCharacterList.getCharacterImage(url: Swift.String, index: Swift.Int) -&gt; ()"
+                  moduleName = "BreakingBadList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brian.lara/Desktop/BreakingBadList/BreakingBadList/MainCharacterList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "864E7CC6-A2CC-4288-8863-36B5CADE6B1A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BreakingBadList/MainCharacterList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
