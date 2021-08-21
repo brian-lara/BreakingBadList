@@ -10,6 +10,7 @@ import UIKit
 class MainCharacterList: UIViewController {
     
     @IBOutlet weak var characterTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     struct Character {
         var imageURL: String
@@ -21,12 +22,19 @@ class MainCharacterList: UIViewController {
         var seasonAppearances: [Int]
     }
     
+    let refreshControl = UIRefreshControl()
     var characterList:[Character] = []
+    var originalCharacterList:[Character] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         characterTableView.delegate = self
         characterTableView.dataSource = self
+        
+        characterTableView.refreshControl = refreshControl
+        characterTableView.refreshControl?.beginRefreshing()
+        
+        searchBar.delegate = self
         getBreakingBadCharacters()
     }
 
@@ -47,15 +55,30 @@ class MainCharacterList: UIViewController {
                     do {
                         
                         if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [Dictionary<String, AnyObject>] {
-                            for (index,character) in json.enumerated(){
-                                let breakingBadCharacter = Character(imageURL: character["img"] as! String, image: UIImage(), name: character["name"] as! String, occupation: character["occupation"] as! [String], status: character["status"] as! String, nickname: character["nickname"] as! String, seasonAppearances: character["appearance"] as! [Int])
-                                
-                                self.characterList.append(breakingBadCharacter)
-                                self.getCharacterImage(url: breakingBadCharacter.imageURL, index: index)
+                           
+                            DispatchQueue.main.async {
+                                self.characterTableView.refreshControl?.beginRefreshing()
                             }
-                        }
-                        DispatchQueue.main.async {
-                            self.characterTableView.reloadData()
+                            
+                            for (i,character) in json.enumerated(){
+                                
+                                self.getCharacterImage(url: character["img"] as! String) { success, image in
+                                    
+                                    let breakingBadCharacter = Character(imageURL: character["img"] as! String, image: image, name: character["name"] as! String, occupation: character["occupation"] as! [String], status: character["status"] as! String, nickname: character["nickname"] as! String, seasonAppearances: character["appearance"] as! [Int])
+                                    
+                                    self.originalCharacterList.append(breakingBadCharacter)
+                                    
+                                    if i == json.count-1{
+
+                                        self.characterList = self.originalCharacterList
+                                        DispatchQueue.main.async {
+                                            self.characterTableView.refreshControl?.endRefreshing()
+                                            self.characterTableView.reloadData()
+                                            self.characterTableView.refreshControl = nil
+                                        }
+                                    }
+                                }
+                            }
                         }
                     } catch {}
                 }
@@ -63,19 +86,18 @@ class MainCharacterList: UIViewController {
         }
     }
     
-    func getCharacterImage(url:String, index:Int){
-                                
+    func getCharacterImage(url:String, completion: @escaping (Bool?, UIImage) -> Void){
+        
         NetworkingService.shared.fetchData(url: url) { (error, data) in
             
             if let _error = error {
-                print(_error)
+                completion(false,UIImage())
             }
             
             if let _data = data {
-                self.characterList[index].image = UIImage(data: _data as! Data)
-                DispatchQueue.main.async {
-                    self.characterTableView.reloadData()
-                }
+
+                completion(true,UIImage(data: _data as! Data)!)
+                
             }
         }
     }
@@ -94,5 +116,23 @@ extension MainCharacterList: UITableViewDelegate, UITableViewDataSource{
         cell.characterNameLabel.text = characterList[indexPath.row].name
         
         return cell
+    }
+}
+
+extension MainCharacterList: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        if searchText == ""{
+            characterList = originalCharacterList
+        }
+        else if let seasonInt = Int(searchText){
+            characterList = originalCharacterList.filter { $0.seasonAppearances.contains(seasonInt) }
+        }
+        else{
+            characterList = originalCharacterList.filter { $0.name.contains(searchText) }
+        }
+        DispatchQueue.main.async {
+            self.characterTableView.reloadData()
+        }
     }
 }
