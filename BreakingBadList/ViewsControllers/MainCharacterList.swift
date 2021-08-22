@@ -18,7 +18,6 @@ class MainCharacterList: UIViewController {
     var originalCharacterList:[Character] = []
     var selectedCell = 0
     var selectedSeason = -1
-    var characterDictionary: [Int:Character] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
