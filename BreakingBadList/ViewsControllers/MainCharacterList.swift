@@ -139,7 +139,7 @@ extension MainCharacterList: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "seasonFilterCell", for: indexPath) as! seasonFilterCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "seasonFilterCell", for: indexPath) as! SeasonFilterCell
         cell.seasonLabel.text = "\(indexPath.row+1)"
         return cell
     }
@@ -178,7 +178,7 @@ extension MainCharacterList: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? seasonFilterCell {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SeasonFilterCell {
             cell.contentView.backgroundColor = nil
         }
     }
