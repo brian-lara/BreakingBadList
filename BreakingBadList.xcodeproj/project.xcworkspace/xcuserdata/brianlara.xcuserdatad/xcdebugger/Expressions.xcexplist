@@ -3,10 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in MainCharacterList.getCharacterImage(url:index:total:):MainCharacterList.swift">
+         contextName = "MainCharacterList.tableView(_:didSelectRowAt:):MainCharacterList.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "characterList[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in MainCharacterList.getCharacterImage(url:character:):MainCharacterList.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainCharacterList.getCharacterImage(url:character:total:):MainCharacterList.swift">
       </ContextState>
       <ContextState
          contextName = "closure #2 in closure #1 in MainCharacterList.getBreakingBadCharacters():MainCharacterList.swift">
@@ -17,10 +25,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "MainCharacterList.searchBar(_:textDidChange:):MainCharacterList.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "seasonCollectionView.indexPathsForSelectedItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in MainCharacterList.getCharacterImage(url:index:):MainCharacterList.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in MainCharacterList.getCharacterImage(url:character:total:):MainCharacterList.swift">
+         contextName = "closure #1 in MainCharacterList.getCharacterImage(url:index:total:):MainCharacterList.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DetailScreen.viewDidLoad():DetailScreen.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "breakingBadCharacter">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

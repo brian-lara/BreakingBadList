@@ -7,11 +7,12 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class CharacterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var characterNameLabel: UILabel!
-    @IBOutlet weak var characterImage: UIImageView!
+    @IBOutlet weak var imageWebView: WKWebView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
