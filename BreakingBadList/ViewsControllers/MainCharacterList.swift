@@ -47,10 +47,6 @@ class MainCharacterList: UIViewController {
                     do {
                         
                         if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [Dictionary<String, AnyObject>] {
-                           
-                            DispatchQueue.main.async {
-                                self.characterTableView.refreshControl?.beginRefreshing()
-                            }
                             
                             for character in json{
                                     
