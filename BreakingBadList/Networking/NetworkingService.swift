@@ -13,8 +13,6 @@ static let shared = NetworkingService()
 
 // MARK: - Initialization
 
-    private init () {}
-
     func fetchData(url: String, completion: @escaping (String?, Any?) -> Void) {
         
         let defaultConfiguration = URLSessionConfiguration.default
