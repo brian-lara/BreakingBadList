@@ -101,12 +101,10 @@ extension MainCharacterList: UITableViewDelegate, UITableViewDataSource{
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-
-}
-
-extension MainCharacterList: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+    func refreshCharacterList(){
+        
+        let searchText = searchBar.searchTextField.text
+        
         if searchText == ""{
             if selectedSeason == -1{
                 characterList = originalCharacterList
@@ -117,16 +115,28 @@ extension MainCharacterList: UISearchBarDelegate{
         }
         else{
             if selectedSeason == -1{
-                characterList = originalCharacterList.filter { $0.name.contains(searchText) }
+                characterList = originalCharacterList.filter { $0.name.contains(searchText!) }
             }
             else{
-                characterList = originalCharacterList.filter { $0.name.contains(searchText) && $0.seasonAppearances.contains(selectedSeason+1)}
+                characterList = originalCharacterList.filter { $0.name.contains(searchText!) && $0.seasonAppearances.contains(selectedSeason+1)}
             }
         }
         
         DispatchQueue.main.async {
             self.characterTableView.reloadData()
         }
+    }
+    
+
+}
+
+extension MainCharacterList: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        refreshCharacterList()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.resignFirstResponder()
     }
 }
 
@@ -149,26 +159,12 @@ extension MainCharacterList: UICollectionViewDelegate, UICollectionViewDataSourc
             if cell.contentView.backgroundColor == #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1){
                 cell.contentView.backgroundColor = nil
                 selectedSeason = -1
-                if searchBar.searchTextField.text == ""{
-                    characterList = originalCharacterList
-                }
-                else{
-                    characterList = originalCharacterList.filter { $0.name.contains(searchBar.searchTextField.text!) }
-                }
             }
             else{
                 cell.contentView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
                 selectedSeason = indexPath.row
-                characterList = originalCharacterList.filter { $0.seasonAppearances.contains(indexPath.row+1) }
-                
-                if searchBar.searchTextField.text != ""{
-                    characterList = characterList.filter { $0.name.contains(searchBar.searchTextField.text!) }
-                }
             }
-        }
-        
-        DispatchQueue.main.async {
-            self.characterTableView.reloadData()
+            refreshCharacterList()
         }
     }
     
